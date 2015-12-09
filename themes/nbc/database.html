@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+
+
+<!--[if IE 8]>         <html class="ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="ie9 gt-ie8"> <![endif]-->
+<!--[if gt IE 9]><!--> <html class="gt-ie8 gt-ie9 not-ie"> <!--<![endif]-->
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Dashboard - Eazypapers APP for Nigerian Bottling Company</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<!-- Open Sans font from Google CDN -->
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
+
+	<!-- LanderApp's stylesheets -->
+	<link href="assets/stylesheets/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/stylesheets/landerapp.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/stylesheets/widgets.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/stylesheets/rtl.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/stylesheets/themes.min.css" rel="stylesheet" type="text/css">
+
+	<!--[if lt IE 9]>
+		<script src="assets/javascripts/ie.min.js"></script>
+	<![endif]-->
+</head>
+
+
+<!-- 1. $BODY ======================================================================================
+	
+	Body
+
+	Classes:
+	* 'theme-{THEME NAME}'
+	* 'right-to-left'      - Sets text direction to right-to-left
+	* 'main-menu-right'    - Places the main menu on the right side
+	* 'no-main-menu'       - Hides the main menu
+	* 'main-navbar-fixed'  - Fixes the main navigation
+	* 'main-menu-fixed'    - Fixes the main menu
+	* 'main-menu-animated' - Animate main menu
+-->
+<body class="theme-default main-menu-animated">
+
+<script>var init = [];</script>
+<!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
+
+<div id="main-wrapper">
+
+
+<!-- 2. $MAIN_NAVIGATION ===========================================================================
+
+	Main navigation
+-->
+	<div id="main-navbar" class="navbar navbar-inverse" role="navigation">
+		<!-- Main menu toggle -->
+		<button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
+		
+		<div class="navbar-inner">
+			<!-- Main navbar header -->
+			<div class="navbar-header">
+
+				<!-- Logo -->
+				<a href="index.html" class="navbar-brand">
+					<strong>EAZYPAPERS.COM</strong>  App
+				</a>
+
+				<!-- Main navbar toggle -->
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse"><i class="navbar-icon fa fa-bars"></i></button>
+
+			</div> <!-- / .navbar-header -->
+
+			<div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
+				<div>
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="#">Home</a>
+						</li>
+						
+					</ul> <!-- / .navbar-nav -->
+
+					<div class="right clearfix">
+						<ul class="nav navbar-nav pull-right right-navbar-nav">
+
+<!-- 3. $NAVBAR_ICON_BUTTONS =======================================================================
+
+							Navbar Icon Buttons
+
+							NOTE: .nav-icon-btn triggers a dropdown menu on desktop screens only. On small screens .nav-icon-btn acts like a hyperlink.
+
+							Classes:
+							* 'nav-icon-btn-info'
+							* 'nav-icon-btn-success'
+							* 'nav-icon-btn-warning'
+							* 'nav-icon-btn-danger' 
+-->
+							<li class="nav-icon-btn nav-icon-btn-danger dropdown">
+								<a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
+									<span class="label">2</span>
+									<i class="nav-icon fa fa-bullhorn"></i>
+									<span class="small-screen-text">Notifications</span>
+								</a>
+
+								<!-- NOTIFICATIONS -->
+								
+								<!-- Javascript -->
+								<script>
+									init.push(function () {
+										$('#main-navbar-notifications').slimScroll({ height: 250 });
+									});
+								</script>
+								<!-- / Javascript -->
+
+								<div class="dropdown-menu widget-notifications no-padding" style="width: 300px">
+									<div class="notifications-list" id="main-navbar-notifications">
+
+										<div class="notification">
+											<div class="notification-title text-danger">SYSTEM</div>
+											<div class="notification-description"><strong>System Check</strong>: has been completed</div>
+											<div class="notification-ago">12h ago</div>
+											<div class="notification-icon fa fa-hdd-o bg-danger"></div>
+										</div> <!-- / .notification -->
+
+										<div class="notification">
+											<div class="notification-title text-info">EAZYPAPER</div>
+											<div class="notification-description">You have <strong>9</strong> new renewals.</div>
+											<div class="notification-ago">12h ago</div>
+											<div class="notification-icon fa fa-truck bg-info"></div>
+										</div> <!-- / .notification -->
+
+										
+
+									</div> <!-- / .notifications-list -->
+									<a href="#" class="notifications-link">MORE NOTIFICATIONS</a>
+								</div> <!-- / .dropdown-menu -->
+							</li>
+							<li class="nav-icon-btn nav-icon-btn-success dropdown">
+								<a href="#messages" class="dropdown-toggle" data-toggle="dropdown">
+									<span class="label">0</span>
+									<i class="nav-icon fa fa-envelope"></i>
+									<span class="small-screen-text">Income messages</span>
+								</a>
+
+								<!-- MESSAGES -->
+								
+								<!-- Javascript -->
+								<script>
+									init.push(function () {
+										$('#main-navbar-messages').slimScroll({ height: 250 });
+									});
+								</script>
+								<!-- / Javascript -->
+
+								<div class="dropdown-menu widget-messages-alt no-padding" style="width: 300px;">
+									<div class="messages-list" id="main-navbar-messages">
+
+										
+
+									</div> <!-- / .messages-list -->
+									<a href="#" class="messages-link">MORE MESSAGES</a>
+								</div> <!-- / .dropdown-menu -->
+							</li>
+<!-- /3. $END_NAVBAR_ICON_BUTTONS -->
+
+							<li>
+								<form class="navbar-form pull-left">
+									<input type="text" class="form-control" placeholder="Search">
+								</form>
+							</li>
+
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+									<img src="assets/demo/avatars/nbc.jpg" alt="">
+									<span>Nigerian Bottling Company</span>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Profile <span class="label label-warning pull-right">new</span></a></li>
+									<li><a href="#">Account <span class="badge badge-primary pull-right">new</span></a></li>
+									<li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
+									<li class="divider"></li>
+									<li><a href="pages-signin.html"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+								</ul>
+							</li>
+						</ul> <!-- / .navbar-nav -->
+					</div> <!-- / .right -->
+				</div>
+			</div> <!-- / #main-navbar-collapse -->
+		</div> <!-- / .navbar-inner -->
+	</div> <!-- / #main-navbar -->
+<!-- /2. $END_MAIN_NAVIGATION -->
+
+
+<!-- 4. $MAIN_MENU =================================================================================
+
+		Main menu
+		
+		Notes:
+		* to make the menu item active, add a class 'active' to the <li>
+		  example: <li class="active">...</li>
+		* multilevel submenu example:
+			<li class="mm-dropdown">
+			  <a href="#"><span class="mm-text">Submenu item text 1</span></a>
+			  <ul>
+				<li>...</li>
+				<li class="mm-dropdown">
+				  <a href="#"><span class="mm-text">Submenu item text 2</span></a>
+				  <ul>
+					<li>...</li>
+					...
+				  </ul>
+				</li>
+				...
+			  </ul>
+			</li>
+-->
+	<div id="main-menu" role="navigation">
+		<div id="main-menu-inner">
+			<div class="menu-content top" id="menu-content-demo">
+				<!-- Menu custom content demo
+					 Javascript: html/assets/demo/demo.js
+				 -->
+				<div>
+					<div class="text-bg"><span class="text-slim">Welcome,</span> <span class="text-semibold">NBC</span></div>
+
+					<img src="assets/demo/avatars/nbc.jpg" alt="" class="">
+					<div class="btn-group">
+						<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
+						<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
+						<a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a>
+						<a href="#" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
+					</div>
+					<a href="#" class="close">&times;</a>
+				</div>
+			</div>
+			<ul class="navigation">
+				<li class="">
+					<a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
+				</li>
+				<li class="active">
+					<a href="database.html"><i class="menu-icon fa fa-th"></i><span class="mm-text">Vehicle Database</span></a>
+					
+				</li>
+				<li>
+					<a href="#"><i class="menu-icon fa fa-files-o"></i><span class="mm-text">Vehicle License</span></a>
+				</li>
+				<li>
+					<a href="#"><i class="menu-icon fa fa-files-o"></i><span class="mm-text">Insurance</span></a>
+				</li>
+				<li>
+					<a href="#"><i class="menu-icon fa fa-check-square"></i><span class="mm-text">Road Worthiness</span></a>
+					
+				</li>
+				<li>
+					<a href="#"><i class="menu-icon fa fa-files-o"></i><span class="mm-text">Local Government Permits</span></a>
+				</li>
+				<li>
+					<a href="#"><i class="menu-icon fa fa-files-o"></i><span class="mm-text">Heavy Duty Permits</span></a>
+				</li>
+				<li>
+					<a href="#"><i class="menu-icon fa fa-files-o"></i><span class="mm-text">Hackney Permits</span></a>
+				</li>
+				
+			</ul> <!-- / .navigation -->
+			<div class="menu-content">
+				<a href="#" class="btn btn-primary btn-block btn-outline dark">Make a Renewal</a>
+			</div>
+		</div> <!-- / #main-menu-inner -->
+	</div> <!-- / #main-menu -->
+<!-- /4. $MAIN_MENU -->
+
+	<div id="content-wrapper">
+		<ul class="breadcrumb breadcrumb-page">
+			<div class="breadcrumb-label text-light-gray">You are here: </div>
+			<li><a href="#">Home</a></li>
+			<li class="active"><a href="#">Dashboard</a></li>
+		</ul>
+		<div class="page-header">
+			
+			<div class="row">
+				<!-- Page header, center on small screens -->
+				<h1 class="col-xs-12 col-sm-4 text-center text-left-sm"><i class="fa fa-dashboard page-header-icon"></i>&nbsp;&nbsp;Dashboard</h1>
+
+				<div class="col-xs-12 col-sm-8">
+					<div class="row">
+						<hr class="visible-xs no-grid-gutter-h">
+						<!-- "Create project" button, width=auto on desktops -->
+						<div class="pull-right col-xs-12 col-sm-auto"><a href="#" class="btn btn-primary btn-labeled" style="width: 100%;"><span class="btn-label icon fa fa-plus"></span>Renew Papers</a></div>
+
+						<!-- Margin -->
+						<div class="visible-xs clearfix form-group-margin"></div>
+
+						<!-- Search field -->
+						<form action="#" class="pull-right col-xs-12 col-sm-6">
+							<div class="input-group no-margin">
+								<span class="input-group-addon" style="border:none;background: #fff;background: rgba(0,0,0,.05);"><i class="fa fa-search"></i></span>
+								<input type="text" placeholder="Search..." class="form-control no-padding-hr" style="border:none;background: #fff;background: rgba(0,0,0,.05);">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div> <!-- / .page-header -->
+
+
+
+<!-- 11. $JQUERY_DATA_TABLES ===========================================================================
+
+				jQuery Data Tables
+-->
+				<!-- Javascript -->
+				<script>
+					init.push(function () {
+						$('#jq-datatables-example').dataTable();
+						$('#jq-datatables-example_wrapper .table-caption').text('VEHICLE DATABASE');
+						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+					});
+				</script>
+				<!-- / Javascript -->
+
+				<div class="panel">
+					<div class="panel-heading">
+						<span class="panel-title"></span>
+					</div>
+					<div class="panel-body">
+						<div class="table-primary">
+							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
+								<thead>
+									<tr>
+										<th>PLATE NUMBER</th>
+										<th>VEHICLE LICENSE</th>
+										<th>HACKNEY PERMIT</th>
+										<th>ROAD WORTHINESS</th>
+										<th>HEAVY DUTY PERMIT</th>
+										<th>LOCAL GOVERNMENT PERMIT</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="odd gradeX">
+										<td>KJA836AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="even gradeC">
+										<td>KJA237AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>					
+									</tr>
+									<tr class="odd gradeX">
+										<td>KJA203AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="even gradeC">
+										<td>KJA334AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="odd gradeX">
+										<td>KJA320AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="even gradeC">
+										<td>KJA909AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>					
+									</tr>
+									<tr class="odd gradeX">
+										<td>KJA699AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="even gradeC">
+										<td>KJA526AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="odd gradeX">
+										<td>KJA217AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="even gradeC">
+										<td>KJA681AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>					
+									</tr>
+									<tr class="odd gradeX">
+										<td>KJA618AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>
+									<tr class="even gradeC">
+										<td>KJA910AA</td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 90%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-warning" style="width: 60%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-danger" style="width: 30%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-success" style="width: 80%;"></div></div></td>
+										<td><div class="progress"><div class="progress-bar progress-bar-info" style="width: 100%;"></div></div></td>
+									</tr>									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+<!-- /11. $JQUERY_DATA_TABLES -->
+
+			</div>
+		</div>
+
+	</div> <!-- / #content-wrapper -->
+	<div id="main-menu-bg"></div>
+</div> <!-- / #main-wrapper -->
+
+<!-- Get jQuery from Google CDN -->
+<!--[if !IE]> -->
+	<script type="text/javascript"> window.jQuery || document.write('<script src="assets/javascripts/jquery.min.js">'+"<"+"/script>"); </script>
+<!-- <![endif]-->
+<!--[if lte IE 9]>
+	<script type="text/javascript"> window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">'+"<"+"/script>"); </script>
+<![endif]-->
+
+
+<!-- LanderApp's javascripts -->
+<script src="assets/javascripts/bootstrap.min.js"></script>
+<script src="assets/javascripts/landerapp.min.js"></script>
+
+<script type="text/javascript">
+	init.push(function () {
+		// Javascript code here
+	})
+	window.LanderApp.start(init);
+</script>
+
+</body>
+</html>
