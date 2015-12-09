@@ -26,6 +26,7 @@ Route::get('client/vehicles', 'ClientsController@assigned_vehicles');
 Route::get('client/ajaxVehicleData', 'ClientsController@ajax_vehicle_data');
 Route::get('client/login', 'ClientsController@client_login');
 Route::post('client/login', 'ClientsController@do_client_login');
+Route::get('client/logout', 'ClientsController@do_logout');
 
 //
 

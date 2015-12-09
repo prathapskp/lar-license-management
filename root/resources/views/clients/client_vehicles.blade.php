@@ -50,11 +50,7 @@
         "ajax": "{{ url('client/ajaxVehicleData') }}",
         "columns": [
             {data: 'plate_number', name: 'plate_number'},		  
-            {data: 'registration_number', name: 'registration_number'},	
-            {data: 'owner_name', name: 'owner_name'},	
-            {data: 'owner_email', name: 'owner_email'},	
-            {data: 'owner_phone', name: 'owner_phone'},	
-            {data: 'created_at', name: 'created_at'},
+            {data: 'registration_number', name: 'registration_number'},	                   
             {data: 'action', name: 'action', orderable: false, searchable: false, bSearchable: false},   
             
         ]      
@@ -74,10 +70,6 @@
 									<tr>
 										<th>{{ trans('vehicle.table_plate_number') }}</th>										
 										<th>{{ trans('vehicle.table_registration_number') }}</th>										
-										<th>{{ trans('vehicle.table_owner_name') }}</th>
-										<th>{{ trans('vehicle.table_owner_email') }}</th>
-										<th>{{ trans('vehicle.table_owner_phone') }}</th>
-										<th>{{ trans('vehicle.table_created_at') }}</th>
 										<th>{{ trans('vehicle.table_action') }}</th>																				
 									</tr>
 								</thead>

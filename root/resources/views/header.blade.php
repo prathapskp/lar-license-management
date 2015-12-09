@@ -96,52 +96,57 @@
                   <a href="#" class="notifications-link">MORE NOTIFICATIONS</a>
                 </div> <!-- / .dropdown-menu -->
               </li>
-              <li class="nav-icon-btn nav-icon-btn-success dropdown">
+              <!-- <li class="nav-icon-btn nav-icon-btn-success dropdown">
                 <a href="#messages" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="label">0</span>
                   <i class="nav-icon fa fa-envelope"></i>
                   <span class="small-screen-text">Income messages</span>
                 </a>
-
-                <!-- MESSAGES -->
+              
+                MESSAGES
                 
-                <!-- Javascript -->
+                Javascript
                 <script>
                   init.push(function () {
                     $('#main-navbar-messages').slimScroll({ height: 250 });
                   });
                 </script>
-                <!-- / Javascript -->
-
+                / Javascript
+              
                 <div class="dropdown-menu widget-messages-alt no-padding" style="width: 300px;">
                   <div class="messages-list" id="main-navbar-messages">
-
+              
                     
-
-                  </div> <!-- / .messages-list -->
+              
+                  </div> / .messages-list
                   <a href="#" class="messages-link">MORE MESSAGES</a>
-                </div> <!-- / .dropdown-menu -->
-              </li>
+                </div> / .dropdown-menu
+              </li> -->
 <!-- /3. $END_NAVBAR_ICON_BUTTONS -->
 
-              <li>
-                <form class="navbar-form pull-left">
-                  <input type="text" class="form-control" placeholder="Search">
-                </form>
-              </li>
+          <!--     <li>
+            <form class="navbar-form pull-left">
+              <input type="text" class="form-control" placeholder="Search">
+            </form>
+          </li> -->
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
-                  <img src="assets/demo/avatars/nbc.jpg" alt="">
+                  <img src="{{ asset("/themes/nbc/assets/demo/avatars/nbc.jpg") }}" alt="">
                   <span>Nigerian Bottling Company</span>
                 </a>
 
                 <ul class="dropdown-menu">
-                  <li><a href="{{ url('profile') }}">Profile <span class="label label-warning pull-right">new</span></a></li>
-                  <li><a href="#">Account <span class="badge badge-primary pull-right">new</span></a></li>
-                  <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li>
+                  <li><a href="{{ url('profile') }}">Profile</a></li>
+                 <!--  <li><a href="#">Account <span class="badge badge-primary pull-right">new</span></a></li>
+                 <li><a href="#"><i class="dropdown-icon fa fa-cog"></i>&nbsp;&nbsp;Settings</a></li> -->
                   <li class="divider"></li>
-                  <li><a href="{{ url('logout') }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                  @if(Session::get('role') == 1)
+                    <li><a href="{{ url('logout') }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                  @endif
+                  @if(Session::get('role') == 2)
+                  <li><a href="{{ url('client/logout') }}"><i class="dropdown-icon fa fa-power-off"></i>&nbsp;&nbsp;Log Out</a></li>
+                  @endif
                 </ul>
               </li>
             </ul> <!-- / .navbar-nav -->

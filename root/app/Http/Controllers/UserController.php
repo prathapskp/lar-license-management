@@ -65,6 +65,7 @@ class UserController extends Controller
                 Session::put('name', $user_data->name);
                 Session::put('email_address', $user_data->email_address);
                 Session::put('role', $user_data->user_role);
+                Session::put('subdomain', $user_data->subdomain);
                 if($user_data->user_role == 1)
                     return Redirect::to('/');
                 elseif($user_data->user_role == 2)

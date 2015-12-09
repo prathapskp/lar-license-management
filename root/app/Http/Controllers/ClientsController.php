@@ -17,6 +17,10 @@ class ClientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return view('clients.list');
@@ -24,7 +28,7 @@ class ClientsController extends Controller
 
     public function ajax_data() {
        $rows = DB::table('users')
-            ->select(DB::raw('id, first_name, last_name, email, subdomain, created_at, IF(status="1", "<span class=\"label label-success\">Active</span>", "<span class=\"label label-danger\">Inactive</span>") as status'))
+            ->select(DB::raw('id, first_name, last_name, email, subdomain, created_at, IF(status="1", "<span class=\"label label-success\">Active</span>", "<span class=\"label label-danger\">Inactive</span>") as status'))            
             ->where('added_by','=', Session::get('user_id'))
             ->whereNull('deleted_at');
             
@@ -159,7 +163,56 @@ class ClientsController extends Controller
     /** client dashboard view */
     public function dashboard()
     {
-        return view('test');
+        $user_id = Session::get('user_id');
+        /** next month expiring license */
+        $formated_start = date("Y-m-01",strtotime("+1 month"));
+        $next_month_end = date("Y-m-01",strtotime("+2 month"));
+        $formated_end = date("Y-m-d",strtotime("-1 day", strtotime($next_month_end)));
+        $next_month_license_type_expiry_data =DB::select(DB::raw("SELECT count(`license_type_vehicle`.`id`) AS count, `license_types`.`type` AS type 
+            FROM `license_type_vehicle` 
+            INNER JOIN `vehicles` ON `vehicles`.`id`=`license_type_vehicle`.`vehicle_id`
+            INNER JOIN `license_types` ON `license_types`.`id` = `license_type_vehicle`.`license_type_id` 
+            WHERE (`license_type_vehicle`.`license_end_on` between '{$formated_start}' AND '{$formated_end}') 
+            AND `license_type_vehicle`.`deleted_at` is NULL AND `vehicles`.`deleted_at` is NULL AND `vehicles`.`client_id` = {$user_id} GROUP BY `license_types`.`id`"));
+       
+        /** current month expiring license by vehicle type*/
+        $formated_start = date("Y-m-01");
+        $month_end = date("Y-m-01",strtotime("+1 month"));
+        $formated_end = date("Y-m-d",strtotime("-1 day", strtotime($month_end)));
+        $current_month_license_type_expiry_data = DB::select(DB::raw("SELECT count(id) AS `count`, `type` FROM
+            (SELECT `license_type_vehicle`.`id`, `vehicle_types`.`type` AS `type` FROM `vehicles` 
+                INNER JOIN `license_type_vehicle` ON `license_type_vehicle`.`vehicle_id` = `vehicles`.`id` 
+                INNER JOIN `vehicle_types` ON `vehicle_types`.`id` = `vehicles`.`vehicle_type_id` 
+                WHERE (`license_type_vehicle`.`license_end_on` between '{$formated_start}' AND '{$formated_end}') 
+                AND `vehicles`.`client_id` = {$user_id}  AND (`license_type_vehicle`.`deleted_at` is NULL) AND (`vehicles`.`deleted_at` is NULL) 
+                GROUP BY `license_type_vehicle`.`vehicle_id`) groups GROUP BY id"));       
+         /** 6 month renewal graph */
+        $graph_plot_data = array();
+        for ($i=1; $i <= 6; $i++) { 
+            $start = $i;
+            $end = $i+1;
+            $formated_start = date("Y-m-01",strtotime("+{$start} month"));
+            $next_month_end = date("Y-m-01",strtotime("+{$end} month"));
+            $formated_end = date("Y-m-d",strtotime("-1 day", strtotime($next_month_end)));
+            $graph_data =DB::select(DB::raw("SELECT count(`license_type_vehicle`.`id`) AS count
+            FROM `license_type_vehicle` 
+            INNER JOIN `vehicles` ON `vehicles`.`id`=`license_type_vehicle`.`vehicle_id`
+            WHERE (`license_type_vehicle`.`license_end_on` between '{$formated_start}' AND '{$formated_end}') 
+            AND `license_type_vehicle`.`deleted_at` is NULL AND `vehicles`.`deleted_at` is NULL AND `vehicles`.`client_id` = {$user_id} GROUP BY `vehicles`.`client_id`"));
+            $val = (isset($graph_data[0]->count))? $graph_data[0]->count : 0;
+            $graph_plot_data[] = array('day' => date("Y-m",strtotime("+{$start} month")), 'v' => $val);        
+            
+        }        
+        /** vehicle with the expied license */
+         $total_vehicle_with_expired_papers = DB::select(DB::raw("SELECT count(*) as `total_expired` from (SELECT count(`license_type_vehicle`.`id`) AS `count`
+                            FROM `vehicles`
+                            INNER JOIN `license_type_vehicle` ON `license_type_vehicle`.`vehicle_id` = `vehicles`.`id`
+                            WHERE NOW() > `license_type_vehicle`.`license_end_on`
+                            AND `license_type_vehicle`.`deleted_at` IS NULL AND `vehicles`.`deleted_at` IS NULL 
+                            AND `vehicles`.`client_id` = {$user_id}
+                            GROUP BY `license_type_vehicle`.`vehicle_id`) groups"));
+         $expired_vehicle_count = (isset($total_vehicle_with_expired_papers[0]->total_expired) ? $total_vehicle_with_expired_papers[0]->total_expired : 0);
+        return view('home.client_dashboard',compact('next_month_license_type_expiry_data', 'current_month_license_type_expiry_data','expired_vehicle_count','graph_plot_data'));
     }
 
     /** get client assigned vehicles. */
@@ -234,6 +287,7 @@ class ClientsController extends Controller
                 Session::put('name', $user_data->name);
                 Session::put('email_address', $user_data->email_address);
                 Session::put('role', $user_data->user_role);
+                Session::put('subdomain', $user_data->subdomain);
                 if($user_data->user_role == 1)
                     return Redirect::to('/');
                 elseif($user_data->user_role == 2)
@@ -248,6 +302,15 @@ class ClientsController extends Controller
                 return redirect()->back()->with('error', 'Invalid credentials!');
             }
         }
+    }
+    public function do_logout() {
+        $subdomain = Session::get('subdomain'); 
+        Auth::logout();
+         // log the user out of our application
+         
+        return Redirect::to('http://'.$subdomain.'.genacle.com/client/login');
+         // redirect the user to the login screen
+        
     }
     /** create subdomian for the clients */
     function create_subdomain($subDomain,$cPanelUser,$cPanelPass,$rootDomain) {     
